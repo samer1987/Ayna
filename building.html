@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ayna</title>
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/dropzone.css">
+<link rel="stylesheet" href="css/bootstrap-toggle.min.css">
+<link rel="stylesheet" href="css/bootstrap-theme.min.css">
+<link href="css/style.css" rel="stylesheet">
+<link href="css/bootstrap-datetimepicker.css" rel="stylesheet">
+<link rel="stylesheet" href="css/bootstrap-datetimepicker.min.css" /> 
+<link href="css/font-awesome.min.css" rel="stylesheet">
+<link href="css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="css/jquery-ui.css">
+<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+<script src="js/respond.min.js"></script>
+<script src="js/moment.min.js"></script>
+<script type="text/javascript"  src="js/jquery-2.1.4.min.js"></script>
+<script type="text/javascript" src="js/jquery-ui.min.js"></script>
+<script src="js/bootstrap.min.js" type="text/javascript"></script>
+<script src="js/bootstrap-toggle.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="js/zingchart.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
+<script src="js/pie-chart.js" type="text/javascript"></script>
+<script type="text/javascript" src="js/loader.js"></script>
+<script type="text/javascript" src="js/header-jq.js"></script>
+<script src="js/dropzone.js"></script>
+<script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
+<script type="text/javascript" src="js/jquery-1.7.min.js"></script>
+<script>
+tinymce.init({
+  selector: 'textarea',
+  height: 300,
+  theme: 'modern',
+  plugins: [
+    'advlist autolink lists link image charmap print preview hr anchor pagebreak',
+    'searchreplace wordcount visualblocks visualchars code fullscreen',
+    'insertdatetime media nonbreaking save table contextmenu directionality',
+    'emoticons template paste textcolor colorpicker textpattern imagetools codesample toc help'
+  ],
+  toolbar1: 'undo redo | insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+  toolbar2: 'print preview media | forecolor backcolor emoticons | codesample help',
+  image_advtab: true,
+  templates: [
+    { title: 'Test template 1', content: 'Test 1' },
+    { title: 'Test template 2', content: 'Test 2' }
+  ],
+  content_css: [
+
+  ]
+ });
+</script>
+<script type="text/javascript">
+			$(document).ready(function(){					
+				$('.add-row').click(function(){
+				var appendTxt = '<tr><td><div class="squared1"><input type="checkbox" value="None" id="squared1" name="thing" /></div></td><td><input type="text" name="build-id" /></td><td><input type="text" name="build-name" /></td><td><input checked data-toggle="toggle" type="checkbox"></td><td class="checksign"><input type="checkbox" value="None" id="squared015" name="thing" /></td></tr>';
+				$(".table tr:first").after(appendTxt);			
+				});        
+			});
+			$(document).ready(function(){	
+				$('.delete-row').click(function(){	
+				var checkstr =  confirm('Are you sure you want to delete this?');
+                               if(checkstr == true){
+                                     }else{
+                                               return false;
+                                                   }		
+					$('input:checkbox[name=thing]').each(function() 
+					{    
+						if($(this).is(':checked'))
+						$(this).parents('tr').remove();
+					});        
+				});
+			}); 
+	function refresh() {
+
+    setTimeout(function () {
+        location.reload()
+    }, 100);
+}		
+</script>
+<script type="text/javascript">
+			$(document).ready(function(){		
+				
+				$('.del').live('click',function(){
+					$(this).parent().parent().remove();
+				});
+				
+				$('.add').live('click',function(){
+					$(this).val('Delete');
+					$(this).attr('class','del fa fa-trash-o');
+					$(this).parents('tr').addClass('add-bg');	
+					$('.add-bg input').attr('readonly', 'readonly');
+					$('.add-bg select').attr('disabled', 'true');
+					
+		var appendTxt = "<tr class='okayaddtr'><td><select class='form-control form-control-bottom lang' name='input_box_one[]'><option>Language</option><option>English</option><option>Hindi</option><option>Arabic</option></select></td> <td><input type='text' class='form-control' value='Building 1'  name='input_box_two[]' required /></td> <td><input type='button' class='okbtn add' value='Ok' /></td></tr>";
+					$("#options-table tr:first").before(appendTxt);			
+				});        
+			});
+</script>
+
+<style>
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button {  
+    -webkit-appearance: "Always Show Up/Down Arrows";
+ }
+.dz-remove {
+    color: #000;  
+}
+</style>
+</head>
+<body class="all-body-form">
+<div class="main_container">
+  <div class="">
+    <div class="lrft-side-area" id="another-element">
+      <div class="col-sm-12 col-md-12">
+        <div class="logo"><a href="index.html" class="site_title"><img src="images/logo-icon.png" alt=""> </a> </div>
+        <br>
+        <!-- sidebar menu -->
+        <div id="sidebar-with-menu">
+          <ul class="nav sidebar-with-menu">
+            <li><a href="building.html"><img src="images/building%20icon.png"/>Buildings</a></li>
+            <li><a href="#"><img src="images/follor-map.png"/>Floors/Maps</a></li>
+            <li class="submenuli"><a href="#"><img src="images/map.png"/>Locations</a>
+              <ul class="sub-menu" style="display:none">
+                <li><a href="#">Points of Interest</a></li>
+                <li><a href="#">Facilities</a></li>
+                <li><a href="#">Destinations</a></li>
+                <li><a href="#">Floors Access</a></li>
+                <li><a href="#">Emergencies</a></li>
+                <li><a href="#">Categories</a></li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="nav sidebar-with-menu">
+            <li class="submenuli"><a href="#"><img src="images/kiosks.png"/>Kiosks</a>
+              <ul class="sub-menu" style="display:none">
+                <li><a href="#">Players</a></li>
+                <li><a href="#">Groups</a></li>
+              </ul>
+            </li>
+            <li><a href="#"> <img src="images/beacons.png"/>Beacons</a></li>
+          </ul>
+          <ul class="nav sidebar-with-menu">
+            <li class="submenuli"><a href="#"><img src="images/repows.png"/>Reports</a>
+              <ul class="sub-menu" style="display:none">
+                <li><a href="#">Network Monitoring</a></li>
+                <li><a href="#">User Activity</a></li>
+                <li><a href="#">Top Segments</a></li>
+                <li><a href="#">Kiosks Performance</a></li>
+                <li><a href="#">Destinations Performance</a></li>
+                <li><a href="#">Facilities Performance</a></li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="nav sidebar-with-menu">
+            <li class="submenuli"><a href="#"><img src="images/system.png"/>System Management</a>
+              <ul class="sub-menu" style="display:none">
+                <li><a href="#">Users</a></li>
+                <li><a href="#">Setting</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+    <!-- sidebar menu --> 
+    <!-- top navigation -->
+    <div class="">
+      <div class="right-side-area">
+        <div class="">
+          <div class="top_nav">
+            <div class="nav_menu">
+              <nav>
+                <button id="myelement"><i class="fa fa-bars" aria-hidden="true"></i></button>
+                <div class="search-box">
+                  <table>
+                    <tbody>
+                      <tr>
+                        <td><input type="submit" value="" class="sum-frm"></td>
+                        <td><input type="text" placeholder="Search..." class="inp-frm"></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <!--sr-box-->
+                
+                <ul class="nav navbar-nav navbar-right">
+                  <li class=""><a href="javascript:;"  onClick="makeProgress()" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false"> <img class="transform-image-header "src="images/transform%20icon.png" alt=""> </a> </li>
+                  <li class="progressbar33">
+                  <div class="progress progress-striped active">
+                      <div class="progress-bar progress-success" id="myBar"  aria-valuenow="60"  aria-valuemin="0" aria-valuemax="100" style="width:60%">60%</div></div>
+                  </li>
+                  <li role="presentation" class="dropdown"> 
+                  <a href="#" class=""> <i class=""><img src="images/Notification.png" alt=""></i><span class="notification">3</span> </a>
+                  <ul class="dropdown-menu notification">
+                   <li><a href="#">Help <i class="fa fa-question-circle" aria-hidden="true"></i></a></li>
+                   <li class="divider"></li>
+                   <li><a href="#">User Profile <i class="fa fa-user" aria-hidden="true"></i></a></li>
+                   <!--<li class="divider"></li>
+                   <li><a href="#">Logout <i class="fa fa-sign-out" aria-hidden="true"></i></a></li>--->
+                  </ul>
+                  </li>
+                  <li role="presentation" class="dropdown"> 
+                  <a href="#" class=""> <i class=""><img src="images/question-mark.png" alt=""></i> </a>
+                  </li>
+                  <li class="dropdown"> 
+                  	<a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="images/user-top.png" class="img-circle"/> <b class="caret"></b></a>
+                  <ul  class="dropdown-menu">
+                  	<li><a href="#">Profile <img src="images/user-top.png" class="img-circle" style="width:30px; height:30px; border:1px solid #FFF;"/></a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">Setting <i class="fa fa-cog" aria-hidden="false"></i></a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">Logout <i class="fa fa-sign-out" aria-hidden="true"></i></a></li>
+                  </ul>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+        </div>
+<div class="col-md-12 full-width-colum-ber">
+          <div class="top-part">
+				 
+		  <div class="sec-top-part">
+			<ul>
+			 <li><a href="new-Building.html"><button class="add-row1"><i class="fa fa-plus-square-o" aria-hidden="true"></i> Add</button></a></li>
+			 <li><button class="edit-row"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</button></li>
+			 <li><button class="delete-row"><i class="fa fa-trash" aria-hidden="true"></i> Delete</button></li>
+			 <li><button class="search-row"><i class="fa fa-search" aria-hidden="true"></i> Search</button></li>
+			 <li><button class="refresh-row" value="refresh" data-wrapper-class="custom-btn" data-corners="false" id="submit" onclick="refresh()"><i class="fa fa-refresh" aria-hidden="true"></i> Refresh</button></li>
+			 <li class="dropdown"><button class="export-row"><i class="fa fa-sign-out" aria-hidden="true"></i> Export</button>
+			 <ul class="dropdown-menu notification" style="display:none;">
+                          <li><a href="#">PDF</a></li>
+                          <li class="divider"></li>
+                          <li><a href="#">EXCEL</a></li>
+                         </ul>
+			 </li>
+			</ul>
+			
+		  </div>
+		   </div>
+	<div class="all-page-content dataedite">
+		<div class="col-md-12">
+			<table class="table">
+				<thead>
+					<tr>
+					
+						<th>
+							Building ID
+						</th>
+						<th>
+							Building Name
+						</th>
+						<th>
+							Enabled/Disabled
+						</th>
+						<th>
+							Synced
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+				
+						<td>
+							128495001
+						</td>
+						<td>
+							Building001
+						</td>
+						<td>
+							Enabled 
+						</td>
+						<td class="checksign"><div class="squared1">
+							<input type='checkbox' name='thing' value='valuable' name="check" id="thing"/><label for="thing"></label></div>
+						</td>
+					</tr>
+					<tr class="active">
+						
+						<td>
+							947300201
+						</td>
+						<td>
+							Building002 
+						</td>
+						<td>
+							Enabled 
+						</td>
+						<td class="checksign"><div class="squared1">
+							<input type='checkbox' name='thing' value='valuable' name='check' id="thing"/><label for="thing"></label></div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							104741838
+						</td>
+						<td>
+							Building003
+						</td>
+						<td>
+							Disabled
+						</td>
+						<td class="checksign"><div class="squared1">
+							<input type='checkbox' name='thing' value='valuable' name='check' id="thing"/><label for="thing"></label></div>
+						</td>
+					</tr>
+					<tr class="active">
+						
+						<td>
+							141074911
+						</td>
+						<td>
+							Building004
+						</td>
+						<td>
+							Enabled
+						</td>
+						<td class="checksign"><div class="squared1">
+							<input type='checkbox' name='thing' value='valuable' name='check' id="thing"/><label for="thing"></label></div>
+						</td>
+					</tr>
+					<tr>
+						
+						<td>
+							134685675
+						</td>
+						<td>
+							Building005
+						</td>
+						<td>
+							Enabled
+						</td>
+						<td class="checksign"><div class="squared1">
+							<input type='checkbox' name='thing' value='valuable' name='check' id="thing"/><label for="thing"></label></div>
+						</td>
+					</tr>
+					<tr class="active">
+						
+						<td>
+							255672562
+						</td>
+						<td>
+							Building006
+						</td>
+						<td>
+							Disabled
+						</td>
+						<td class="checksign"><div class="squared1">
+							<input type='checkbox' name='thing' value='valuable' name='check' id="thing"/><label for="thing"></label></div>
+						</td>
+					</tr>
+					<tr>
+						
+						<td>
+							256874638
+						</td>
+						<td>
+							Building007
+						</td>
+						<td>
+							Enabled
+						</td>
+						<td class="checksign"><div class="squared1">
+							<input type='checkbox' name='thing' value='valuable' name='check' id="thing"/><label for="thing"></label></div>
+						</td>
+					</tr>
+					<tr class="active">
+						
+						<td>
+							372985056
+						</td>
+						<td>
+							Building008
+						</td>
+						<td>
+							Enabled
+						</td>
+						<td class="checksign"><div class="squared1">
+							<input type='checkbox' name='thing' value='valuable' name='check' id="thing"/><label for="thing"></label></div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							128495001
+						</td>
+						<td>
+							Building009
+						</td>
+						<td>
+							Disabled
+						</td>
+						<td class="checksign"><div class="squared1">
+							<input type='checkbox' name='thing' value='valuable' name='check' id="thing"/><label for="thing"></label></div>
+						</td>
+					</tr>
+					<tr class="active">
+						
+						<td>
+							947300201 
+						</td>
+						<td>
+							Building010
+						</td>
+						<td>
+							Enabled
+						</td>
+						<td class="checksign"><div class="squared1">
+							<input type='checkbox' name='thing' value='valuable' name='check' id="thing"/><label for="thing"></label></div>
+						</td>
+					</tr>
+					<tr>
+						
+						
+						<td>
+							104741838
+						</td>
+						<td>
+							Building011
+						</td>
+						<td>
+							Enabled
+						</td>
+						<td class="checksign"><div class="squared1">
+							<input type='checkbox' name='thing' value='valuable' name='check' id="thing"/><label for="thing"></label></div>
+						</td>
+					</tr>
+					<tr class="active">
+						
+						<td>
+							141074911
+						</td>
+						<td>
+							Building012
+						</td>
+						<td>
+							Disabled
+						</td>
+						<td class="checksign"><div class="squared1">
+							<input type='checkbox' name='thing' value='valuable' name='check' id="thing"/><label for="thing"></label></div>
+						</td>
+					</tr>
+					<tr>
+						
+						<td>
+							134685675
+						</td>
+						<td>
+							Building013
+						</td>
+						<td>
+							Enabled
+						</td>
+						<td class="checksign"><div class="squared1">
+							<input type='checkbox' name='thing' value='valuable' name='check' id="thing"/><label for="thing"></label></div>
+						</td>
+					</tr>
+					<tr class="active">
+						
+						<td>
+							255672562
+						</td>
+						<td>
+							Building014
+						</td>
+						<td>
+							Enabled
+						</td>
+						<td class="checksign"><div class="squared1">
+							<input type='checkbox' name='thing' value='valuable' name='check' id="thing"/><label for="thing"></label></div>
+						</td>
+					</tr>
+					<tr>
+						
+						<td>
+							256874638
+						</td>
+						<td>
+							Building015 
+						</td>
+						<td>
+							Disabled
+						</td>
+						<td class="checksign"><div class="squared1">
+							<input type='checkbox' name='thing' value='valuable' name='check' id="thing"/><label for="thing"></label></div>
+						</td>
+					</tr>
+
+					</tbody>
+			</table>
+		
+
+				
+		</div>
+		
+		
+          <div class="clear"></div>
+   
+        </div>
+        <div class="clear"></div>
+        <div class="">
+        
+          </div>
+        </div>
+        <div class="clear"><br/><br/></div>
+      </div>
+    </div>
+</div>
+<style>
+
+.sec-top-part ul {
+    width: 100%;
+    display: table;
+    margin: -10px auto -10px;
+    padding: 0px;
+}
+.sec-top-part ul li {
+    display: table-cell;
+    width: 16.5%;
+}
+.sec-top-part button {
+    background: transparent;
+    border-left: 1px dotted #FFF;
+    color: #FFF;
+    width: 100%;
+    padding: 10px 0px;
+    border-right: none;
+    border-top: none;
+    transition: all 0.6s;
+    font-size: 18px !important;
+outline: none !important;
+    border-bottom: none !important;
+}
+.add-row1 a:hover{
+    color: #5bcc56 !important;
+}
+.add-row1 a {
+    color: #fff;
+}
+.sec-top-part button:hover, .sec-top-part button:focus {
+
+    transition: all 0.6s;
+    background-color: #081a2a;
+    color: #69cc59 !import;
+outline: none !important;
+}
+.all-page-content.dataedite {
+    background: #FFF;
+    margin: 15px 0px 0px;
+    padding: 20px 15px;
+}
+.full-width-colum-ber{
+    margin-bottom: 0px;
+}
+</style>
+<script>
+$(document).ready(function(){
+    $(".toggle-group").click(function(){
+        if($("div.toggle").hasClass("btn-default"))
+		{
+			$('.form-horizontal input').attr('readonly', 'readonly');
+			$('.form-horizontal select').attr('disabled', 'true');
+			tinymce.get('mce_0').getBody().setAttribute('contenteditable', 'false');
+            $('.form-horizontal #inputEmail3').attr('disabled', 'true');
+			$('.form-horizontal .add').attr('disabled', 'true');
+            $('.form-horizontal #my-awesome-dropzone').css('pointer-events', 'none');
+            $('.form-horizontal iframe.map.map-img').css('pointer-events', 'none');
+		}
+		else
+		{
+			$('.form-horizontal input').removeAttr('readonly');
+			$('.form-horizontal select').removeAttr('disabled');
+			tinymce.get('mce_0').getBody().setAttribute('contenteditable', 'true');
+            $('.form-horizontal #inputEmail3').removeAttr('disabled');
+			$('.form-horizontal .add').removeAttr('disabled');
+            $('.form-horizontal #my-awesome-dropzone').css('pointer-events', 'auto');
+            $('.form-horizontal iframe.map.map-img').css('pointer-events', 'auto');
+		}
+    });
+});
+$(document).ready(function(){ 
+    $('.table tbody tr').click(function() {
+  $(this).toggleClass('selected');
+ } );
+   });
+$(document).ready(function(){ 
+    $('.edit-row').click(function(){ 
+         var checkedNum = $('input[name="thing"]:checked').length;
+                                     if (checkedNum > 1) {
+                                       alert("You can only Edit one at a time");
+                                     }  
+    });
+   });
+</script>
+
+
+
+<script type="text/javascript" src="js/footer-jq.js"></script>
+</body>
+</html>
